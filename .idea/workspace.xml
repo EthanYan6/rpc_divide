@@ -31,14 +31,17 @@
       <file leaf-file-name="services.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="203" column="27" lean-forward="false" selection-start-line="203" selection-start-column="8" selection-end-line="203" selection-end-column="27" />
+            <state relative-caret-position="154">
+              <caret line="259" column="5" lean-forward="false" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="5" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-                <element signature="e#1463#2144#0" expanded="false" />
-                <element signature="e#2185#2989#0" expanded="false" />
-                <element signature="e#3038#4808#0" expanded="false" />
-                <element signature="e#6285#6684#0" expanded="false" />
+                <element signature="e#92#232#0" expanded="false" />
+                <element signature="e#269#1357#0" expanded="false" />
+                <element signature="e#1394#6263#0" expanded="false" />
+                <element signature="e#1477#2158#0" expanded="false" />
+                <element signature="e#2199#3003#0" expanded="false" />
+                <element signature="e#3052#4822#0" expanded="false" />
+                <element signature="e#6750#7149#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -258,14 +261,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="203" column="27" lean-forward="false" selection-start-line="203" selection-start-column="8" selection-end-line="203" selection-end-column="27" />
+        <state relative-caret-position="154">
+          <caret line="259" column="5" lean-forward="false" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="5" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#1463#2144#0" expanded="false" />
-            <element signature="e#2185#2989#0" expanded="false" />
-            <element signature="e#3038#4808#0" expanded="false" />
-            <element signature="e#6285#6684#0" expanded="false" />
+            <element signature="e#92#232#0" expanded="false" />
+            <element signature="e#269#1357#0" expanded="false" />
+            <element signature="e#1394#6263#0" expanded="false" />
+            <element signature="e#1477#2158#0" expanded="false" />
+            <element signature="e#2199#3003#0" expanded="false" />
+            <element signature="e#3052#4822#0" expanded="false" />
+            <element signature="e#6750#7149#0" expanded="false" />
           </folding>
         </state>
       </provider>
