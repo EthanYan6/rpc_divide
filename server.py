@@ -13,7 +13,7 @@ class Handlers:
         """
         # 增加判断操作，抛出自定义异常
         if num2 == 0:
-            raise InvalidOpreation()
+            raise InvalidOpreation('EthanYan')
         val = num1 / num2
         return val
 

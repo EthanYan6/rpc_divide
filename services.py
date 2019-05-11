@@ -302,6 +302,7 @@ class Server(object):
         """
         # 1.开启服务器的监听，等待客户端的连接请求
         self.sock.listen(128)
+        print('服务器开始监听')
 
         # 2.接受客户端的连接请求
         while True:
