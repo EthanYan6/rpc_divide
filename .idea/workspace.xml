@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1de1c04e-0879-4e05-a713-65324bc9e704" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/services.py" afterPath="$PROJECT_DIR$/services.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +30,8 @@
       <file leaf-file-name="services.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="259" column="5" lean-forward="false" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="5" />
+            <state relative-caret-position="253">
+              <caret line="286" column="8" lean-forward="true" selection-start-line="286" selection-start-column="8" selection-end-line="286" selection-end-column="8" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#92#232#0" expanded="false" />
@@ -41,7 +40,8 @@
                 <element signature="e#1477#2158#0" expanded="false" />
                 <element signature="e#2199#3003#0" expanded="false" />
                 <element signature="e#3052#4822#0" expanded="false" />
-                <element signature="e#6750#7149#0" expanded="false" />
+                <element signature="e#6293#6716#0" expanded="false" />
+                <element signature="e#7160#7559#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -261,8 +261,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="259" column="5" lean-forward="false" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="5" />
+        <state relative-caret-position="253">
+          <caret line="286" column="8" lean-forward="true" selection-start-line="286" selection-start-column="8" selection-end-line="286" selection-end-column="8" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#92#232#0" expanded="false" />
@@ -271,7 +271,8 @@
             <element signature="e#1477#2158#0" expanded="false" />
             <element signature="e#2199#3003#0" expanded="false" />
             <element signature="e#3052#4822#0" expanded="false" />
-            <element signature="e#6750#7149#0" expanded="false" />
+            <element signature="e#6293#6716#0" expanded="false" />
+            <element signature="e#7160#7559#0" expanded="false" />
           </folding>
         </state>
       </provider>

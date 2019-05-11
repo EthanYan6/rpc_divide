@@ -277,6 +277,25 @@ class Channel(object):
         return sock
 
 
+class Server(object):
+    """
+    RPC服务器
+    """
+    def __init__(self, host, port):
+        # 创建socket的工具对象
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        
+        # 设置socket，重用地址
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+        # 绑定地址
+        self.host = host
+        self.port = port
+        sock.bind((self.host, self.port))
+        self.sock = sock
+
+
+
 if __name__ == '__main__':
     # 构造消息数据
     proto = DivideProtocol()
