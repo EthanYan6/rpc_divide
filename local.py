@@ -1,0 +1,194 @@
+import struct
+from io import BytesIO
+
+
+class MethodProtocol(object):
+    """
+    解读方法名字
+    """
+
+    def __init__(self, connection):
+        self.conn = connection
+
+    def _read_all(self, size):
+        """此处方法同3.read_all方法中实现的代码，因此不再重复书写"""
+        # 当然，如果你愿意，直接用类的继承也未尝不可
+        if isinstance(self.conn, BytesIO):
+            # 只涉及到本地操作，未涉及网络，不需要特殊处理，因为测试代码需要，此处才进行引用
+            buff = self.conn.read(size)
+            return buff
+
+        else:
+            # socket类型数据如何处理
+            # 因涉及到网络，获取到的数据未必是所需大小，所以需要判断
+            have = 0
+            buff = b''
+            while have < size:
+                chunk = self.conn.recv(size - have)
+                buff += chunk
+                l = len(chunk)
+                have += l
+
+                if l == 0:
+                    # 表示客户端socket关闭了
+                    raise EOFError()
+            return buff
+
+    def get_method_name(self):
+        """
+        提供方法名
+        :return: str 方法名
+        """
+        # 1.读取字符串长度
+        buff = self._read_all(4)
+        length = struct.unpack('!I', buff)[0]
+
+        # 2.读取字符串
+        buff = self._read_all(length)
+        name = buff.decode()
+        return name
+
+
+class DivideProtocol(object):
+    """
+    divide过程消息协议转换工具
+    """
+
+    def args_encode(self, num1, num2=1):
+        """
+        将原始的调用请求参数转换打包成二进制消息数据
+        :param num1: int
+        :param num2: int
+        :return: bytes 二进制消息数据
+        """
+        name = 'divide'
+
+        # 处理方法的名字 字符串
+        # 处理字符串的长度
+        buff = struct.pack('!I', 6)
+        # 处理字符
+        buff += name.encode()
+
+        # 处理参数1
+        # 处理序号
+        buff2 = struct.pack('!B', 1)
+        # 处理参数值
+        buff2 += struct.pack('!i', num1)
+
+        # 处理参数2
+        if num2 != 1:
+            # 处理序号
+            buff2 += struct.pack('!B', 2)
+            buff2 += struct.pack('!i', num2)
+
+        # 处理消息长度，边界设定
+        length = len(buff2)
+        buff += struct.pack('!I', length)
+
+        buff += buff2
+        return buff
+
+    def _read_all(self, size):
+        """
+        帮助我们读取二进制数据
+        :param size: 想要读取的二进制数据大小
+        :return: 二进制数据 bytes
+        """
+        # self.conn
+        # 读取二进制数据
+        # socket.recv(4) => ?4 判断读取的数据是否为4个，直到4个字节我们才进行处理
+        # BytesIO.read
+        if isinstance(self.conn, BytesIO):
+            # 只涉及到本地操作，未涉及网络，不需要特殊处理，因为测试代码需要，此处才进行引用
+            buff = self.conn.read(size)
+            return buff
+
+        else:
+            # socket类型数据如何处理
+            # 因涉及到网络，获取到的数据未必是所需大小，所以需要判断
+            have = 0
+            buff = b''
+            while have < size:
+                chunk = self.conn.recv(size - have)
+                buff += chunk
+                l = len(chunk)
+                have += l
+
+                if l == 0:
+                    # 表示客户端socket关闭了
+                    raise EOFError()
+            return buff
+
+    def args_decode(self, connection):
+        """
+        接收调用请求消息数据并进行解析
+        :param connection: 连接对象 socket BytesIO
+        :return: dict 包含了解析之后的参数
+        """
+        # 参数长度映射关系
+        param_len_map = {
+            1: 4,
+            2: 4
+        }
+        # 参数格式映射关系
+        param_fmt_map = {
+            1: '!i',
+            2: '!i'
+        }
+        # 参数名字映射关系
+        param_name_map = {
+            1: 'num1',
+            2: 'num2'
+        }
+        # 保存用来返回参数的字典
+        # args = {"num1": xxx, "num2": xxx}
+        args = {}
+        self.conn = connection
+        # 处理方法的名字已经提前被处理
+        # 后面我们会实现一个方法专门处理不同的调用请求的方法名解析
+
+        # 处理消息边界
+        # 读取二进制数据
+        # socket.recv(4) => ?4 判断读取的数据是否为4个，直到4个字节我们才进行处理
+        # BytesIO.read
+        buff = self._read_all(4)
+        # 将二进制数据转换为python的数据类型
+        length = struct.unpack('!I', buff)[0]
+
+        # 已经读取处理的字节数
+        have = 0
+
+        # 处理第一个参数
+        # 1.处理参数序号
+        buff = self._read_all(1)
+        have += 1
+        param_seq = struct.unpack('!B', buff)[0]
+
+        # 2.处理参数值
+        param_len = param_len_map[param_seq]
+        buff = self._read_all(param_len)
+        have += param_len
+        param_fmt = param_fmt_map[param_seq]
+        param = struct.unpack(param_fmt, buff)[0]
+
+        param_name = param_name_map[param_seq]
+        args[param_name] = param
+
+        if have >= length:
+            return args
+
+        # 处理第二个参数
+        # 1.处理参数序号
+        buff = self._read_all(1)
+        param_seq = struct.unpack('!B', buff)[0]
+
+        # 2.处理参数值
+        param_len = param_len_map[param_seq]
+        buff = self._read_all(param_len)
+        param_fmt = param_fmt_map[param_seq]
+        param = struct.unpack(param_fmt, buff)[0]
+
+        param_name = param_name_map[param_seq]
+        args[param_name] = param
+
+        return args
