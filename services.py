@@ -330,6 +330,74 @@ class ClientStub(object):
     def add(self):
         pass
 
+
+class ServerStub(object):
+    """
+    帮助服务端完成远端过程调用
+    """
+    def __init__(self, connection, handlers):
+        """
+        :param connection: 与客户端的连接
+        :param handlers: 真正本地被调用的方法（函数  过程）
+        class Handlers:
+
+            @staticmethod
+            def divide(num1, num2=1):
+                pass
+
+            @staticmethod
+            def add():
+                pass
+        """
+        self.conn = connection
+        self.method_proto = MethodProtocol(self.conn)
+        self.process_map = {
+            'divide': self._process_divide
+        }
+        self.handlers = handlers
+
+    def process(self):
+        """
+        当服务端接受了一个客户端的连接，建立好连接后，完成远端调用处理
+        :return:
+        """
+        # 1.接收消息数据，并解析方法的名字
+        name = self.method_proto.get_method_name()
+
+        # 2.根据解析获得的方法（过程）名，调用响应的过程协议，接收并解析消息数据
+        # self.process_map[name]()
+        _process = self.process_map[name]
+        _process()
+
+    def _process_divide(self):
+        """
+        处理除法过程调用
+        :return:
+        """
+        # 1.创建用于除法过程调用参数协议数据解析的工具
+        proto = DivideProtocol()
+        # 2.解析调用参数消息数据
+        args = proto.args_decode(self.conn)
+        # args = {"num1": xxx, "num2": xxx}
+
+        # 3.进行除法的本地过程调用
+        # 将本地调用过程的返回值（包括可能的异常）打包成消息协议数据，通过网络返回给客户端
+        try:
+            val = self.handlers.divide(**args)
+        except InvalidOpreation as e:
+            ret_message = proto.result_encode(e)
+        else:
+            ret_message = proto.result_encode(val)
+
+        self.conn.sendall(ret_message)
+
+        
+    # def _process_add(self):
+    #     pass
+
+
+
+
 if __name__ == '__main__':
     # 构造消息数据
     proto = DivideProtocol()
