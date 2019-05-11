@@ -192,3 +192,26 @@ class DivideProtocol(object):
         args[param_name] = param
 
         return args
+
+
+
+if __name__ == '__main__':
+    # 构造消息数据
+    proto = DivideProtocol()
+    # divide(200, 100)
+    # message = proto.args_encode(200, 100)
+    # divide(200)
+    message = proto.args_encode(200)
+
+    # 模拟网络连接
+    conn = BytesIO()
+    conn.write(message)
+    conn.seek(0)
+
+    # 解析消息数据
+    method_proto = MethodProtocol(conn)
+    name = method_proto.get_method_name()
+    print(name)
+
+    args = proto.args_decode(conn)
+    print(args)
