@@ -30,8 +30,8 @@
       <file leaf-file-name="services.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="286" column="8" lean-forward="true" selection-start-line="286" selection-start-column="8" selection-end-line="286" selection-end-column="8" />
+            <state relative-caret-position="689">
+              <caret line="321" column="15" lean-forward="true" selection-start-line="321" selection-start-column="15" selection-end-line="321" selection-end-column="15" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#92#232#0" expanded="false" />
@@ -41,7 +41,8 @@
                 <element signature="e#2199#3003#0" expanded="false" />
                 <element signature="e#3052#4822#0" expanded="false" />
                 <element signature="e#6293#6716#0" expanded="false" />
-                <element signature="e#7160#7559#0" expanded="false" />
+                <element signature="e#6745#7117#0" expanded="false" />
+                <element signature="e#7942#8341#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -74,8 +75,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="995" />
-    <option name="y" value="63" />
+    <option name="x" value="1128" />
+    <option name="y" value="120" />
     <option name="width" value="974" />
     <option name="height" value="885" />
   </component>
@@ -208,7 +209,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="995" y="63" width="974" height="885" extended-state="0" />
+    <frame x="1128" y="120" width="974" height="885" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -217,7 +218,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26353276" sideWeight="0.495585" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24944812" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24944812" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -261,8 +262,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="286" column="8" lean-forward="true" selection-start-line="286" selection-start-column="8" selection-end-line="286" selection-end-column="8" />
+        <state relative-caret-position="689">
+          <caret line="321" column="15" lean-forward="true" selection-start-line="321" selection-start-column="15" selection-end-line="321" selection-end-column="15" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#92#232#0" expanded="false" />
@@ -272,7 +273,8 @@
             <element signature="e#2199#3003#0" expanded="false" />
             <element signature="e#3052#4822#0" expanded="false" />
             <element signature="e#6293#6716#0" expanded="false" />
-            <element signature="e#7160#7559#0" expanded="false" />
+            <element signature="e#6745#7117#0" expanded="false" />
+            <element signature="e#7942#8341#0" expanded="false" />
           </folding>
         </state>
       </provider>

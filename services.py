@@ -284,7 +284,7 @@ class Server(object):
     def __init__(self, host, port):
         # 创建socket的工具对象
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        
+
         # 设置socket，重用地址
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
@@ -295,6 +295,40 @@ class Server(object):
         self.sock = sock
 
 
+class ClientStub(object):
+    """
+    用来帮助客户端完成远程过程调用 RPC调用
+
+    stub = ClientStub()
+    stub.divide(200, 100)
+    框架是通用的，如果想实现加法，stub.add()类似
+    """
+    def __init__(self, channel):
+        self.channel = channel
+        self.conn = self.channel.get_connection()
+
+    # 提供一个方法供客户端进行调用
+    def divide(self, num1, num2=1):
+        # 将调用的参数打包成消息协议的数据
+        proto = DivideProtocol()
+        args = proto.args_encode(num1, num2)
+
+        # 将消息数据通过网络发送给服务器
+        self.conn.sendall(args)
+
+        # 接收服务器返回的返回值消息数据，并进行解析
+        result = proto.result_decode(self.conn)
+
+        # 将结果值（正常float 或 异常InvalidOperation）返回给客户端
+        if isinstance(result, float):
+            # 正常
+            return result
+        else:
+            # 异常
+            raise result
+
+    def add(self):
+        pass
 
 if __name__ == '__main__':
     # 构造消息数据
