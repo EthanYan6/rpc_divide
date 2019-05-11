@@ -2,6 +2,12 @@ import struct
 from io import BytesIO
 
 
+class InvalidOpreation(Exception):
+    def __init__(self, message=None):
+        # 异常信息如果有指定则按指定输出，没有的话则输出`invalid operation`
+        self.message = message or 'invalid operation'
+
+
 class MethodProtocol(object):
     """
     解读方法名字
@@ -192,6 +198,61 @@ class DivideProtocol(object):
         args[param_name] = param
 
         return args
+
+    def result_encode(self, result):
+        """
+        将原始结果数据转换为消息协议二进制数据
+        :param result: 原始结果数据 float InvalidOperation
+        :return: bytes 消息协议二进制数据
+        """
+        # 正常
+        if isinstance(result, float):
+            # 处理返回值类型
+            buff = struct.pack('!B', 1)
+            buff += struct.pack('!f', result)
+            return buff
+
+        # 异常
+        else:
+            # 处理返回值类型
+            buff = struct.pack('!B', 2)
+            # 处理返回值
+            length = len(result.message)
+            # 处理字符串长度
+            buff += struct.pack('!I', length)
+            # 处理字符
+            buff += result.message.encode()
+            return buff
+
+    def result_decode(self, connection):
+        """
+        将返回值消息数据转换为原始返回值
+        :param connection: socket BytesIO
+        :return: float InvalidOperation对象
+        """
+        self.conn = connection
+        # 处理返回值类型
+        buff = self._read_all(1)
+        result_type = struct.unpack('!B', buff)[0]
+
+        if result_type == 1:
+            # 正常情况
+            # 读取float数据
+            buff = self._read_all(4)
+            val = struct.unpack('!f', buff)[0]
+            return val
+        else:
+            # 异常情况
+            # 读取字符串的长度
+            buff = self._read_all(4)
+            length = struct.unpack('!I', buff)[0]
+
+            # 读取字符串
+            buff = self._read_all(length)
+            message = buff.decode()
+
+            return InvalidOpreation(message)
+
 
 
 
